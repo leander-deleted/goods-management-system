@@ -9,6 +9,7 @@ input::input(QWidget *parent) :
     ui(new Ui::input)
 {
     ui->setupUi(this);
+    this->resize(900,730);
     init_db(db);
 }
 
@@ -26,30 +27,49 @@ void input::on_pushButton_clicked(){
 	QString size = ui->comboBox_2->currentText();
 	QString source = ui->lineEdit_8->text();
 	QString place = ui->lineEdit_7->text();
-	QString number = ui->lineEdit_6->text();
-	QString price = ui->lineEdit_5->text();
+	int number = ui->lineEdit_6->text().toInt();
+	float price = ui->lineEdit_5->text().toFloat();
 	QString apartAddr = ui->lineEdit->text();
 	QString contactName = ui->lineEdit_2->text();
 	QString contactTel = ui->lineEdit_3->text();
 
 	QSqlQuery q ;
-	QString sql = "insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) values(:name,:contact,:source,:place,:number,:price,:catogory)";
+	QString sql;
+	/*
+	insert into contact(contact,tel,apartment) 
+	values("老王","124124","m102")
+	*/
+	sql = "insert into contact(contact,tel,apartment) values(:contact,:tel,:apartment)";
 	q.prepare(sql);
-	q.bindValue(":name",nameProduct);
 	q.bindValue(":contact",contactName);
-	q.bindValue(":source",source);
-	q.bindValue(":place",place);
-	q.bindValue(":number",number);
-	q.bindValue(":price",price);
-	q.bindValue(":catogory",catogory);
+	q.bindValue(":tel",contactTel);
+	q.bindValue(":apartment",apartAddr);
+
 	if(q.exec()){
-		sql = "insert into contact(contact,tel,apartment) values(:contact,:tel,:apartment)";
+
+		/*
+		insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
+		values("线性代数","老刘","m楼","n楼",400,4.3,"金属材料");
+
+		insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
+		values("钢铁","李珊珊","沈阳","大连",400,4.3,"金属材料");
+		*/
+		sql = "insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) values(:name,:contact,:source,:place,:number,:price,:catogory)";
 		q.prepare(sql);
+		q.bindValue(":name",nameProduct);
 		q.bindValue(":contact",contactName);
-		q.bindValue(":tel",contactTel);
-		q.bindValue(":apartment",apartAddr);
+		q.bindValue(":source",source);
+		q.bindValue(":place",place);
+		q.bindValue(":number",number);
+		q.bindValue(":price",price);
+		q.bindValue(":catogory",catogory);
 		if(q.exec()){
-			sql = "insert into eiinfo(goodsname,contact,ei) values(:goodsname,:contact,:ei)";
+
+		}
+		else{
+		QMessageBox::information(this,"提示","联系人已存在");
+		}
+		sql = "insert into eiinfo(goodsname,contact,ei) values(:goodsname,:contact,:ei)";
 			q.prepare(sql);
 			q.bindValue(":goodsname",nameProduct);
 			q.bindValue(":contact",contactName);
@@ -60,10 +80,6 @@ void input::on_pushButton_clicked(){
 			else{
 			QMessageBox::information(this,"fail","fail to add eiinfo into db");
 			}
-		}
-		else{
-		QMessageBox::information(this,"fail","fail to add contact into db");
-	}
 	}
 	else{
 		QMessageBox::information(this,"fail","fail to add goods info into db");

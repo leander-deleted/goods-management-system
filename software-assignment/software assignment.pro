@@ -16,7 +16,8 @@ HEADERS += widget.h  \
     query.h \
     result.h\
     common.h \
-    modi_dialog.h
+    modi_dialog.h\
+    button.h
 
 FORMS += widget.ui \
     maingui.ui \
@@ -33,7 +34,8 @@ SOURCES += main.cpp widget.cpp \
     query.cpp \
     result.cpp\
     common.cpp \
-    modi_dialog.cpp
+    modi_dialog.cpp\
+    button.cpp
 
 
 

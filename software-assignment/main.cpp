@@ -3,6 +3,7 @@
 
 #include "widget.h"
 #include <QApplication>
+#include<QFile>
 
 #include "login.h"
 #include"maingui.h"
@@ -10,9 +11,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QFile style_file("./style.qss");
+    style_file.open(QFile::ReadOnly);
+    QString style(style_file.readAll());
+    a.setStyleSheet(style);
     mainGui w;
     w.show();
-
     return a.exec();
 }
 

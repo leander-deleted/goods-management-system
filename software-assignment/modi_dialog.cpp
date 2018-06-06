@@ -2,14 +2,15 @@
 #include "ui_modi_dialog.h"
 #include "common.h"
 
-modi_dialog::modi_dialog(QSqlQuery & q,QWidget *parent) :
+modi_dialog::modi_dialog(QStringList &list,int column,result *parent1,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::modi_dialog),
-    q(q)
-{
+    list(list),
+    parent(parent1),
+    column(column) {
     ui->setupUi(this);
     init_db(db);
-	QMessageBox::information(this,"success",q.executedQuery());
+	//QMessageBox::information(this,"success","successfully open file");
 }
 
 modi_dialog::~modi_dialog()
@@ -20,14 +21,74 @@ modi_dialog::~modi_dialog()
 //submit
 void modi_dialog::on_pushButton_clicked(){
 	QString data = ui->lineEdit->text();
-	QMessageBox::information(this,"success",q.executedQuery());
+	QSqlQuery q;
+	QString sql;
+	if(column==0){
 
-	q.bindValue(":data",data);
-	if(q.exec()){
-		QMessageBox::information(this,"success","sucess to update data");
+		sql = "update goodsinfo set goodsname=:data "
+		" where goodsname  = :goodsname "
+		" and contact = :contact";
+		q.prepare(sql);
+		q.bindValue(":goodsname",list.at(0));
+		q.bindValue(":contact",list.at(2));
+		q.bindValue(":data",data);
+		//QMessageBox::information(this,"success",q.executedQuery());
+
+		if(q.exec()){
+			QMessageBox::information(this,"success","successfully update goodsname");
+			emit parent->emitSignal();
+			this->close();
+
+		}
+		else{
+			QMessageBox::information(this,"fail","fail  to update");
+
+		}
 	}
-	else{
-		QMessageBox::information(this,"fail","fail to update data");
+	else if (column == 1){
+
+		sql = "update eiinfo set ei=:data "
+		" where goodsname  = :goodsname "
+		" and contact = :contact and ei=:ei";
+		q.prepare(sql);
+		q.bindValue(":goodsname",list.at(0));
+		q.bindValue(":contact",list.at(2));
+		q.bindValue(":ei",list.at(1));
+		q.bindValue(":data",data);
+		//QMessageBox::information(this,"success",q.executedQuery());
+
+		if(q.exec()){
+			QMessageBox::information(this,"success","successfully update goodsname");
+			emit parent->emitSignal();
+			this->close();
+
+		}
+		else{
+			QMessageBox::information(this,"fail","fail  to update");
+
+		}
+	}
+	else if (column == 2){
+
+		sql = "update goodsinfo set place=:data "
+		" where goodsname  = :goodsname "
+		" and contact = :contact";
+		q.prepare(sql);
+		q.bindValue(":goodsname",list.at(0));
+		q.bindValue(":contact",list.at(2));
+		q.bindValue(":data",data);
+		//QMessageBox::information(this,"success",q.executedQuery());
+
+		if(q.exec()){
+			QMessageBox::information(this,"success","successfully update goodsname");
+			emit parent->emitSignal();
+			this->close();
+
+		}
+		else{
+			QMessageBox::information(this,"fail","fail  to update");
+
+		}
 	}
 }
 

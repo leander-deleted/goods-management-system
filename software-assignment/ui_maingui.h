@@ -32,10 +32,10 @@ public:
     {
         if (mainGui->objectName().isEmpty())
             mainGui->setObjectName(QStringLiteral("mainGui"));
-        mainGui->resize(765, 511);
+        mainGui->resize(800, 483);
         label = new QLabel(mainGui);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(320, 70, 221, 111));
+        label->setGeometry(QRect(220, 70, 331, 111));
         QFont font;
         font.setPointSize(26);
         label->setFont(font);
@@ -57,7 +57,7 @@ public:
     void retranslateUi(QWidget *mainGui)
     {
         mainGui->setWindowTitle(QApplication::translate("mainGui", "Form", Q_NULLPTR));
-        label->setText(QApplication::translate("mainGui", "\345\212\237\350\203\275", Q_NULLPTR));
+        label->setText(QApplication::translate("mainGui", "\347\211\251\350\265\204\347\256\241\347\220\206\347\263\273\347\273\237", Q_NULLPTR));
         pushButton->setText(QApplication::translate("mainGui", "\345\275\225\345\205\245\345\222\214\347\274\226\350\276\221", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("mainGui", "\346\211\223\345\215\260\351\242\204\350\247\210", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("mainGui", "\346\237\245\350\257\242", Q_NULLPTR));

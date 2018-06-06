@@ -9,6 +9,7 @@ mainGui::mainGui(QWidget *parent) :
     ui(new Ui::mainGui)
 {
     ui->setupUi(this);
+    this->resize(800,483);
 }
 
 mainGui::~mainGui()

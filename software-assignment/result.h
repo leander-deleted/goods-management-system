@@ -12,6 +12,8 @@
 #include<QSqlQuery>
 #include<QMessageBox>
 
+#include<QLineEdit>
+
 namespace Ui {
 class result;
 }
@@ -23,15 +25,17 @@ class result : public QWidget
 public:
     explicit result(QWidget *parent = 0);
     ~result();
+    void emitSignal();
 
-private:
-	void show_result();
 	
+
 signals:
 	void QcellDoubleClicked(int row, int column);
+	void refresh();
 
 private slots:
 	void doubleClick(int row,int column);
+	void show_result();
 
 private:
     Ui::result *ui;

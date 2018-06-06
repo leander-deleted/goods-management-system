@@ -14,7 +14,9 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -22,16 +24,44 @@ QT_BEGIN_NAMESPACE
 class Ui_result
 {
 public:
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
     QTableWidget *tableWidget;
 
     void setupUi(QWidget *result)
     {
         if (result->objectName().isEmpty())
             result->setObjectName(QStringLiteral("result"));
-        result->resize(753, 553);
-        tableWidget = new QTableWidget(result);
+        result->resize(1800, 700);
+        layoutWidget = new QWidget(result);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 20, 971, 541));
+        
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(layoutWidget);
+        label->setObjectName(QStringLiteral("label"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy);
+
+        verticalLayout->addWidget(label);
+
+        tableWidget = new QTableWidget(layoutWidget);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 20, 731, 521));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(1);
+        sizePolicy1.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy1);
+        tableWidget->setMaximumSize(QSize(16777215, 531));
+
+        verticalLayout->addWidget(tableWidget);
+
 
         retranslateUi(result);
 
@@ -41,6 +71,7 @@ public:
     void retranslateUi(QWidget *result)
     {
         result->setWindowTitle(QApplication::translate("result", "Form", Q_NULLPTR));
+        label->setText(QApplication::translate("result", "\346\211\223\345\215\260\351\242\204\350\247\210\357\274\232", Q_NULLPTR));
     } // retranslateUi
 
 };

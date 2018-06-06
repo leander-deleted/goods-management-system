@@ -29,7 +29,6 @@ class Ui_input
 public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *catogory;
@@ -70,21 +69,17 @@ public:
     {
         if (input->objectName().isEmpty())
             input->setObjectName(QStringLiteral("input"));
-        input->resize(843, 741);
+        input->resize(900, 741);
         pushButton = new QPushButton(input);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(630, 240, 171, 71));
+        pushButton->setGeometry(QRect(630, 470, 171, 71));
         QFont font;
         font.setPointSize(15);
         pushButton->setFont(font);
         pushButton_2 = new QPushButton(input);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(630, 360, 171, 71));
+        pushButton_2->setGeometry(QRect(630, 590, 171, 71));
         pushButton_2->setFont(font);
-        pushButton_3 = new QPushButton(input);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(630, 480, 171, 71));
-        pushButton_3->setFont(font);
         layoutWidget = new QWidget(input);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(40, 50, 501, 621));
@@ -266,7 +261,6 @@ public:
         layoutWidget->raise();
         pushButton->raise();
         pushButton_2->raise();
-        pushButton_3->raise();
 
         retranslateUi(input);
 
@@ -278,7 +272,6 @@ public:
         input->setWindowTitle(QApplication::translate("input", "Form", Q_NULLPTR));
         pushButton->setText(QApplication::translate("input", "\346\217\220\344\272\244", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("input", "\346\270\205\347\251\272", Q_NULLPTR));
-        pushButton_3->setText(QApplication::translate("input", "\346\211\223\345\215\260\351\242\204\350\247\210", Q_NULLPTR));
         label->setText(QApplication::translate("input", "\347\247\215\347\261\273", Q_NULLPTR));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()

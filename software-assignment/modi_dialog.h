@@ -14,7 +14,9 @@
 #include<QSqlDatabase>
 #include<QSqlQuery>
 
-#include<QMessageBox>
+#include <QMessageBox>
+#include "result.h"
+
 
 namespace Ui {
 class modi_dialog;
@@ -25,7 +27,8 @@ class modi_dialog : public QWidget
     Q_OBJECT
 
 public:
-    explicit modi_dialog(QSqlQuery & q , QWidget *parent = 0);
+    //parent1: parent widget pointer
+    explicit modi_dialog(QStringList & list ,int column,result *parent1, QWidget *parent = 0);
     ~modi_dialog();
 
 private slots:
@@ -36,7 +39,9 @@ private slots:
 private:
     Ui::modi_dialog *ui;
     QSqlDatabase db;
-    QSqlQuery & q;
+    QStringList list;
+    result * parent;
+    int column;
 };
 
 #endif // MODI_DIALOG_H
