@@ -8,6 +8,7 @@ input::input(QWidget *parent) :
     ui->setupUi(this);
 }
 
+//this need to be deleted
 input::~input()
 {
     delete ui;
