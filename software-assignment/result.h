@@ -33,9 +33,11 @@ signals:
 	void QcellDoubleClicked(int row, int column);
 	void refresh();
 
+
 private slots:
 	void doubleClick(int row,int column);
 	void show_result();
+    void show_refresh();
 
 private:
     Ui::result *ui;

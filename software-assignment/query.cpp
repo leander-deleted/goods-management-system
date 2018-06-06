@@ -31,41 +31,51 @@ void query::on_pushButton_clicked(){
 
 //QMessageBox::information(this,"success",queryWord);
 		if(id==0){
-		sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-		" from eiinfo,goodsinfo,contact "
-		" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-		" and  goodsinfo.goodsname = :goodsname";
+			/*
+		select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment
+		 from all_show_info 
+		 where  goodsname = :goodsname;
+
+			*/
+		sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+		" from all_show_info "
+		" where  goodsname = :goodsname";
 		}
 		else if(id==1){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-		" from eiinfo,goodsinfo,contact "
-		" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-		" and goodsinfo.goodsname like :c :goodsname :c";
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+		" from all_show_info "
+		" where goodsname like :c :goodsname :c";
 		}
 		q.prepare(sql);
 		q.bindValue(":c","%");
 		q.bindValue(":goodsname",queryWord);
 	} else if (c_queryType == "按进货/出货"){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-		" from eiinfo,goodsinfo,contact "
-		" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-		" and eiinfo.ei like :c :ei :c";
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+		" from all_show_info "
+		" where ei like :c :ei :c";
 		q.prepare(sql);
 		q.bindValue(":c","%");
 		q.bindValue(":ei",queryWord);
 		}
 		else if (c_queryType == "按联系人"){
 		if(id==0){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and  contact.contact = :contact";
+
+			/*
+			 select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment
+			 from eiinfo,goodsinfo,contact 
+			 where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact
+			 and  contact.contact = :contact
+
+
+			*/
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where  contact = :contact";
 		}
 		else if(id==1){
-				sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and contact.contact like :c :contact :c";
+				sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where contact like :c :contact :c";
 		}
 			q.prepare(sql);
 			q.bindValue(":c","%");
@@ -73,16 +83,14 @@ void query::on_pushButton_clicked(){
 	}
 	else if (c_queryType == "按产地"){
 		if(id==0){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and  goodsinfo.source = :source";
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where  source = :source";
 		}
 		else if(id==1){
-				sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and goodsinfo.source  like :c :source :c";
+				sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where source  like :c :source :c";
 		}
 			q.prepare(sql);
 			q.bindValue(":c","%");
@@ -90,16 +98,14 @@ void query::on_pushButton_clicked(){
 	}
 	else if (c_queryType == "按交易地点"){
 		if(id==0){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and  goodsinfo.place = :place";
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where  place = :place";
 		}
 		else if(id==1){
-				sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and goodsinfo.place  like :c :place :c";
+				sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where place  like :c :place :c";
 		}
 			q.prepare(sql);
 			q.bindValue(":c","%");
@@ -107,23 +113,25 @@ void query::on_pushButton_clicked(){
 	}
 	else if (c_queryType == "按交易单位"){
 		if(id==0){
-			sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and  goodsinfo.apartment = :apartment";
+			sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where  apartment = :apartment";
 		}
 		else if(id==1){
-				sql = "select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment"
-			" from eiinfo,goodsinfo,contact "
-			" where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact"
-			" and goodsinfo.apartment  like :c :apartment :c";
+			/*
+			 select eiinfo.goodsname,ei,eiinfo.contact,source,place,number,price,catogory,tel,apartment
+			 from eiinfo,goodsinfo,contact 
+			 where eiinfo.contact = goodsinfo.contact and goodsinfo.contact = contact.contact
+			 and contact.apartment  like "%厂%"
+			*/
+				sql = "select goodsname,ei,contact,source,place,number,price,catogory,tel,apartment"
+			" from all_show_info "
+			" where apartment  like :c :apartment :c";
 		}
 			q.prepare(sql);
 			q.bindValue(":c","%");
 			q.bindValue(":apartment",queryWord);
 	}
-
-
 
 
 		if(q.exec()){

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>969</width>
-    <height>685</height>
+    <width>1282</width>
+    <height>778</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,9 +16,9 @@
   <widget class="QLineEdit" name="queryWord">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>280</x>
      <y>30</y>
-     <width>451</width>
+     <width>831</width>
      <height>51</height>
     </rect>
    </property>
@@ -26,8 +26,8 @@
   <widget class="QRadioButton" name="precise">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>140</y>
+     <x>620</x>
+     <y>150</y>
      <width>151</width>
      <height>41</height>
     </rect>
@@ -42,8 +42,8 @@
   <widget class="QRadioButton" name="vague">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>140</y>
+     <x>780</x>
+     <y>150</y>
      <width>151</width>
      <height>41</height>
     </rect>
@@ -58,7 +58,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>130</x>
      <y>30</y>
      <width>121</width>
      <height>51</height>
@@ -73,15 +73,15 @@
     <rect>
      <x>20</x>
      <y>220</y>
-     <width>921</width>
-     <height>441</height>
+     <width>1221</width>
+     <height>521</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>700</x>
+     <x>940</x>
      <y>140</y>
      <width>171</width>
      <height>51</height>
@@ -94,8 +94,8 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>140</y>
+     <x>430</x>
+     <y>150</y>
      <width>141</width>
      <height>31</height>
     </rect>
@@ -134,8 +134,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>140</y>
+     <x>130</x>
+     <y>150</y>
      <width>81</width>
      <height>18</height>
     </rect>

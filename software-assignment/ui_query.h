@@ -41,35 +41,35 @@ public:
     {
         if (query->objectName().isEmpty())
             query->setObjectName(QStringLiteral("query"));
-        query->resize(969, 685);
+        query->resize(1282, 778);
         queryWord = new QLineEdit(query);
         queryWord->setObjectName(QStringLiteral("queryWord"));
-        queryWord->setGeometry(QRect(170, 30, 451, 51));
+        queryWord->setGeometry(QRect(280, 30, 831, 51));
         precise = new QRadioButton(query);
         precisionGroup = new QButtonGroup(query);
         precisionGroup->setObjectName(QStringLiteral("precisionGroup"));
         precisionGroup->addButton(precise);
         precise->setObjectName(QStringLiteral("precise"));
-        precise->setGeometry(QRect(360, 140, 151, 41));
+        precise->setGeometry(QRect(620, 150, 151, 41));
         vague = new QRadioButton(query);
         precisionGroup->addButton(vague);
         vague->setObjectName(QStringLiteral("vague"));
-        vague->setGeometry(QRect(520, 140, 151, 41));
+        vague->setGeometry(QRect(780, 150, 151, 41));
         label = new QLabel(query);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(50, 30, 121, 51));
+        label->setGeometry(QRect(130, 30, 121, 51));
         tableWidget = new QTableWidget(query);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(20, 220, 921, 441));
+        tableWidget->setGeometry(QRect(20, 220, 1221, 521));
         pushButton = new QPushButton(query);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(700, 140, 171, 51));
+        pushButton->setGeometry(QRect(940, 140, 171, 51));
         comboBox = new QComboBox(query);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(170, 140, 141, 31));
+        comboBox->setGeometry(QRect(430, 150, 141, 31));
         label_2 = new QLabel(query);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(50, 140, 81, 18));
+        label_2->setGeometry(QRect(130, 150, 81, 18));
 
         retranslateUi(query);
 
