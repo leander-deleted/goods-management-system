@@ -9,7 +9,7 @@ mainGui::mainGui(QWidget *parent) :
     ui(new Ui::mainGui)
 {
     ui->setupUi(this);
-    this->resize(800,483);
+    this->resize(800,600);
 }
 
 mainGui::~mainGui()
@@ -39,4 +39,18 @@ void mainGui::on_pushButton_4_clicked(){
 	query * w = new query;
 	w->show();
 
+}
+
+//backup
+void mainGui::on_pushButton_5_clicked(){
+	system("mysqldump --defaults-extra-file=C:/mysql/idconfig.conf a2 > backup.sql");
+	std::fstream sql_file("./backup.sql");
+	sql_file.seekg(0,std::ios::end);
+	int size = sql_file.tellg();
+	if(size!=0){
+		QMessageBox::information(this,"success","back up successfully");
+	}
+	else{
+		QMessageBox::information(this,"fail","fail to backup");
+	}
 }

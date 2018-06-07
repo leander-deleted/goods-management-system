@@ -27,27 +27,31 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
 
     void setupUi(QWidget *mainGui)
     {
         if (mainGui->objectName().isEmpty())
             mainGui->setObjectName(QStringLiteral("mainGui"));
-        mainGui->resize(800, 483);
+        mainGui->resize(774, 591);
         label = new QLabel(mainGui);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(220, 70, 331, 111));
+        label->setGeometry(QRect(220, 50, 331, 111));
         QFont font;
         font.setPointSize(26);
         label->setFont(font);
         pushButton = new QPushButton(mainGui);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(30, 290, 191, 101));
+        pushButton->setGeometry(QRect(130, 240, 191, 101));
         pushButton_3 = new QPushButton(mainGui);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(280, 290, 191, 101));
+        pushButton_3->setGeometry(QRect(420, 240, 191, 101));
         pushButton_4 = new QPushButton(mainGui);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(530, 290, 191, 101));
+        pushButton_4->setGeometry(QRect(130, 410, 191, 101));
+        pushButton_5 = new QPushButton(mainGui);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(420, 410, 191, 101));
 
         retranslateUi(mainGui);
 
@@ -61,6 +65,7 @@ public:
         pushButton->setText(QApplication::translate("mainGui", "\345\275\225\345\205\245\345\222\214\347\274\226\350\276\221", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("mainGui", "\346\211\223\345\215\260\351\242\204\350\247\210", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("mainGui", "\346\237\245\350\257\242", Q_NULLPTR));
+        pushButton_5->setText(QApplication::translate("mainGui", "\345\244\207\344\273\275", Q_NULLPTR));
     } // retranslateUi
 
 };
