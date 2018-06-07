@@ -1,7 +1,9 @@
 /*
 
-   QTableWidget *tableWidget;
-
+    QTableWidget *tableWidget;
+    
+    //move to all tables;
+    QPushButton *pushButton;
 */
 
 #ifndef RESULT_H
@@ -38,6 +40,7 @@ private slots:
 	void doubleClick(int row,int column);
 	void show_result();
     void show_refresh();
+    void on_pushButton_clicked();
 
 private:
     Ui::result *ui;

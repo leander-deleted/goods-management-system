@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -28,16 +29,16 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QTableWidget *tableWidget;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *result)
     {
         if (result->objectName().isEmpty())
             result->setObjectName(QStringLiteral("result"));
-        result->resize(1800, 700);
+        result->resize(1004, 657);
         layoutWidget = new QWidget(result);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(10, 20, 971, 541));
-        
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -58,10 +59,15 @@ public:
         sizePolicy1.setVerticalStretch(1);
         sizePolicy1.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy1);
-        tableWidget->setMaximumSize(QSize(16777215, 531));
 
         verticalLayout->addWidget(tableWidget);
 
+        pushButton = new QPushButton(result);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(750, 570, 231, 71));
+        QFont font;
+        font.setPointSize(13);
+        pushButton->setFont(font);
 
         retranslateUi(result);
 
@@ -72,6 +78,7 @@ public:
     {
         result->setWindowTitle(QApplication::translate("result", "Form", Q_NULLPTR));
         label->setText(QApplication::translate("result", "\346\211\223\345\215\260\351\242\204\350\247\210\357\274\232", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("result", "\346\217\220\344\272\244\345\210\260\346\200\273\345\272\223", Q_NULLPTR));
     } // retranslateUi
 
 };

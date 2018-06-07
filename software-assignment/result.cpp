@@ -10,7 +10,9 @@ result::result(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->verticalLayout->setStretch(1,2);
+    ui->verticalLayout->addWidget(ui->pushButton);
     this->setLayout(ui->verticalLayout);
+
     init_db(db);
     show_result();
     connect(ui->tableWidget,SIGNAL(cellDoubleClicked(int,int)),this,SLOT(doubleClick(int,int)));
@@ -325,4 +327,47 @@ void result::doubleClick(int row,int column){
 	dialog->show();
 
 
+}
+
+void result::on_pushButton_clicked(){
+	QSqlQuery q;
+	QString sql;
+	/*
+		insert into contact_all
+		select * from contact;
+
+		insert into goodsinfo_all
+		select * from goodsinfo;
+
+		insert into eiinfo_all
+		select * from eiinfo;
+
+		
+		delete from goodsinfo;
+		delete from eiinfo;
+		delete from contact;
+
+		delete from goodsinfo_all;delete from eiinfo_all;delete from contact_all;
+	*/
+	QStringList sql_list;
+	sql_list << "insert into contact_all select * from contact;"<<
+		"insert into goodsinfo_all select * from goodsinfo;"<<
+		"insert into eiinfo_all select * from eiinfo;"<<
+		"delete from goodsinfo;"<<"delete from contact;"<<"delete from eiinfo;"
+		;
+	int count = 0;
+	for(QString sql:sql_list){
+		q.prepare(sql);
+		if(q.exec()){
+			count++;
+		}
+		else{
+			QMessageBox::warning(this,"fail","提交失败");
+		}
+	}
+
+	if(count==sql_list.length()){
+		QMessageBox::information(this,"success","提交成功");
+		emitSignal();
+	}
 }

@@ -1,3 +1,20 @@
+/*
+    QLabel *label;
+
+    //id
+    QLineEdit *lineEdit;
+
+    //password
+    QLineEdit *lineEdit_2;
+    QLabel *label_2;
+
+    //submit
+    QPushButton *pushButton;
+
+    //clear
+    QPushButton *pushButton_2;
+*/
+
 #ifndef LOGIN_H
 #define LOGIN_H
 
@@ -5,6 +22,7 @@
 #include <QString>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include<QMessageBox>
 
 #include<QDebug>
 #include<iostream>
@@ -23,7 +41,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
+    void on_pushButton_2_clicked();
 
 private:
 	void test_func();

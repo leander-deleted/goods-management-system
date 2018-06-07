@@ -14,7 +14,6 @@ login::login(QWidget *parent) :
 
     init_db(db);
 
-    //test_func();
 }
 
 login::~login()
@@ -22,7 +21,7 @@ login::~login()
     delete ui;
 }
 
-
+//submit 
 void login::on_pushButton_clicked()
 {
 	// input username
@@ -33,12 +32,14 @@ void login::on_pushButton_clicked()
 	QSqlQuery q;
 	QString sql = "select password from userinfo where username = :id" ;
 	q.prepare(sql);
-	q.bindValue(":id","123");
+	q.bindValue(":id",l_username);
 	if (!q.exec()){
-
+		QMessageBox::warning(this,"fail","用户不存在");
 	}
 	else {
 		q.next();
+
+		//password get from database
 		QString d_password = q.value(0).toString();
 
 		if(l_password == d_password){
@@ -48,11 +49,19 @@ void login::on_pushButton_clicked()
 			w-> show();
 			this->close();
 		}
+		else{
+			QMessageBox::warning(this,"fail","密码错误或用户不存在");
+		}
 	}
 
 
 }
 
+
+void login::on_pushButton_2_clicked(){
+	ui->lineEdit->clear();
+	ui->lineEdit_2->clear();
+}
 
 void login::test_func(){
 	on_pushButton_clicked();
