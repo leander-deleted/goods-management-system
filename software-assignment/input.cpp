@@ -3,6 +3,7 @@
 #include "login.h"
 #include "common.h"
 
+bool insert_db(QStringList &sql_list,int order,QStringList&data_list,int number,int price);
 
 input::input(QWidget *parent) :
     QWidget(parent),
@@ -33,59 +34,110 @@ void input::on_pushButton_clicked(){
 	QString contactName = ui->lineEdit_2->text();
 	QString contactTel = ui->lineEdit_3->text();
 
-	QSqlQuery q ;
-	QString sql;
+	QStringList sql_l_1,sql_l_2,sql_l_3;
+
+	QStringList data_list;
+	data_list<<catogory<<EI<<nameProduct<<size<<source<<place<<apartAddr<<contactName<<contactTel;
+
 	/*
 	insert into contact(contact,tel,apartment) 
 	values("老王","124124","m102")
 	*/
-	sql = "insert into contact(contact,tel,apartment) values(:contact,:tel,:apartment)";
-	q.prepare(sql);
-	q.bindValue(":contact",contactName);
-	q.bindValue(":tel",contactTel);
-	q.bindValue(":apartment",apartAddr);
+	
 
-	if(q.exec()){
+	sql_l_1<<"lock table contact write"
+	<<"insert into contact(contact,tel,apartment) values(:contact,:tel,:apartment)"
+	<<"unlock tables";
 
-		/*
-		insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
-		values("线性代数","老刘","m楼","n楼",400,4.3,"金属材料");
+		
+	/*
+	insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
+	values("线性代数","老刘","m楼","n楼",400,4.3,"金属材料");
 
-		insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
-		values("钢铁","李珊珊","沈阳","大连",400,4.3,"金属材料");
-		*/
-		sql = "insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) values(:name,:contact,:source,:place,:number,:price,:catogory)";
-		q.prepare(sql);
-		q.bindValue(":name",nameProduct);
-		q.bindValue(":contact",contactName);
-		q.bindValue(":source",source);
-		q.bindValue(":place",place);
-		q.bindValue(":number",number);
-		q.bindValue(":price",price);
-		q.bindValue(":catogory",catogory);
-		if(q.exec()){
+	insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) 
+	values("钢铁","李珊珊","沈阳","大连",400,4.3,"金属材料");
+	*/
 
-		}
-		else{
-		QMessageBox::information(this,"提示","联系人已存在");
-		}
-		sql = "insert into eiinfo(goodsname,contact,ei) values(:goodsname,:contact,:ei)";
-			q.prepare(sql);
-			q.bindValue(":goodsname",nameProduct);
-			q.bindValue(":contact",contactName);
-			q.bindValue(":ei",EI);
-			if(q.exec()){
-				QMessageBox::information(this,"success","sucessfully add into db");
+	sql_l_2<<"lock table goodsinfo write"
+	<< "insert into goodsinfo(goodsname,contact,source,place,number,price,catogory) values(:name,:contact,:source,:place,:number,:price,:catogory)"
+	<<"unlock tables";
+	
+
+	sql_l_3<<"lock table eiinfo write"
+	<<"insert into eiinfo(goodsname,contact,ei) values(:goodsname,:contact,:ei)"
+	<<"unlock tables";
+
+	int i =0;
+	while(i<3){
+		if(i==0){
+
+			if(insert_db(sql_l_1,1,data_list,number,price)){
+				//ok
 			}
 			else{
-			QMessageBox::information(this,"fail","fail to add eiinfo into db");
+				QMessageBox::information(this,"fail","input error");
 			}
-	}
-	else{
-		QMessageBox::information(this,"fail","fail to add goods info into db");
+		}
+		else if (i==1){
+			if(insert_db(sql_l_1,1,data_list,number,price)){
+				//ok
+			}
+			else{
+				QMessageBox::information(this,"fail","input error");
+			}
+		}
+		else{
+			if(insert_db(sql_l_1,1,data_list,number,price)){
+				//ok
+			}
+			else{
+				QMessageBox::information(this,"fail","input error");
+			}
+		}
+		i++;
 	}
 	on_pushButton_2_clicked();
-	
+}
+
+
+bool insert_db(QStringList &sql_list,int order,QStringList&data_list,int number,int price){
+	QSqlQuery q;
+	int i =0;
+	bool flag = true;
+	for(QString sql:sql_list){
+		q.prepare(sql);
+		if(i==1){
+			if(order==1){
+				q.bindValue(":contact",data_list.at(7));
+				q.bindValue(":tel",data_list.at(8));
+				q.bindValue(":apartment",data_list.at(6));
+			}
+			else if (order == 2){
+				q.bindValue(":name",data_list.at(2));
+				q.bindValue(":contact",data_list.at(7));
+				q.bindValue(":source",data_list.at(4));
+				q.bindValue(":place",data_list.at(5));
+				q.bindValue(":number",number);
+				q.bindValue(":price",price);
+				q.bindValue(":catogory",data_list.at(0));
+			}
+			else if (order ==3){
+				q.bindValue(":goodsname",data_list.at(2));
+				q.bindValue(":contact",data_list.at(7));
+				q.bindValue(":ei",data_list.at(1));
+			}
+		}
+
+		if(q.exec()){
+			//lock/unlock successfully
+		}
+		else{
+			//lock/unlock fail
+			flag = false;
+		}
+	}
+	i++;
+	return flag;
 }
 
 //clear
