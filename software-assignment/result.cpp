@@ -329,6 +329,7 @@ void result::doubleClick(int row,int column){
 
 }
 
+// submit to total database
 void result::on_pushButton_clicked(){
 	QSqlQuery q;
 	QString sql;
@@ -362,6 +363,7 @@ void result::on_pushButton_clicked(){
 			count++;
 		}
 		else{
+			qDebug()<<"this sql fail to insert to whole database"<<sql;
 			QMessageBox::warning(this,"fail","提交失败");
 		}
 	}

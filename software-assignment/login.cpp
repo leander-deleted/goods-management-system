@@ -11,7 +11,7 @@ login::login(QWidget *parent) :
 {
 //qDebug()<<"run set up ui";
     ui->setupUi(this);
-
+    ui->lineEdit_2->setEchoMode(QLineEdit::Password);
     init_db(db);
 
 }

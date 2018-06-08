@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     style_file.open(QFile::ReadOnly);
     QString style(style_file.readAll());
     a.setStyleSheet(style);
-    mainGui w;
+    login w;
     w.show();
     return a.exec();
 }

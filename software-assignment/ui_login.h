@@ -35,7 +35,7 @@ public:
     {
         if (login->objectName().isEmpty())
             login->setObjectName(QStringLiteral("login"));
-        login->resize(825, 566);
+        login->resize(916, 548);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -46,11 +46,11 @@ public:
         login->setFont(font);
         label = new QLabel(login);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(130, 100, 120, 109));
+        label->setGeometry(QRect(210, 80, 120, 109));
         label->setFont(font);
         lineEdit = new QLineEdit(login);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(290, 130, 291, 41));
+        lineEdit->setGeometry(QRect(370, 110, 291, 41));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Maximum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -58,19 +58,19 @@ public:
         lineEdit->setSizePolicy(sizePolicy1);
         lineEdit_2 = new QLineEdit(login);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(290, 230, 291, 41));
+        lineEdit_2->setGeometry(QRect(370, 210, 291, 41));
         sizePolicy1.setHeightForWidth(lineEdit_2->sizePolicy().hasHeightForWidth());
         lineEdit_2->setSizePolicy(sizePolicy1);
         label_2 = new QLabel(login);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(130, 200, 120, 109));
+        label_2->setGeometry(QRect(210, 180, 120, 109));
         label_2->setFont(font);
         pushButton = new QPushButton(login);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(321, 383, 151, 81));
+        pushButton->setGeometry(QRect(331, 393, 151, 81));
         pushButton_2 = new QPushButton(login);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(540, 380, 151, 81));
+        pushButton_2->setGeometry(QRect(640, 390, 151, 81));
 
         retranslateUi(login);
 
