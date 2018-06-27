@@ -1,6 +1,9 @@
-debug/
-release/
-.qmake.stash
-Makefile
+debug/*
+!*.qss
+release/*
+!*.qss
+*.o
+*.exe
 *.Debug
 *.Release
+*.qmake.stash
